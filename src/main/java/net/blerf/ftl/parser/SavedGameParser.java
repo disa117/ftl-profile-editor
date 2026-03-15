@@ -10502,7 +10502,9 @@ public class SavedGameParser extends Parser {
 			int weaponCount = shipState.getWeaponList().size();
 			writeInt( out, weaponCount );
 			for ( WeaponState weapon : shipState.getWeaponList() ) {
-				writeWeaponModule( out, weapon.getWeaponModule(), fileFormat );
+				WeaponModuleState weaponMod = weapon.getWeaponModule();
+				if ( weaponMod == null ) weaponMod = new WeaponModuleState();
+				writeWeaponModule( out, weaponMod, fileFormat );
 			}
 		}
 
